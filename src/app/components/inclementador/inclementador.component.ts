@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-inclementador',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styles: []
 })
 export class InclementadorComponent implements OnInit {
-
+  @ViewChild('txtProgress') txtProgress: ElementRef;
   @Input('nombre') leyenda: string = 'Leyenda';
   @Input() progreso: number = 50;
   @Output() cambioValor: EventEmitter<number> = new EventEmitter();
@@ -20,8 +20,9 @@ export class InclementadorComponent implements OnInit {
   }
 
   onChanges(newValue: number) {
-    let elemHTML: any = document.getElementsByName('progreso')[0];
+    // const elemHTML: any = document.getElementsByName('progreso')[0];
 
+    // console.log(this.txtProgress);
 
     console.log(newValue);
     if (newValue >= 100) {
@@ -31,9 +32,11 @@ export class InclementadorComponent implements OnInit {
     } else {
       this.progreso = newValue;
     }
-    elemHTML.value = this.progreso;
+    // elemHTML.value = this.progreso;
+    this.txtProgress.nativeElement.value = this.progreso;
 
     this.cambioValor.emit(this.progreso);
+    this.txtProgress.nativeElement.focus();
   }
 
   cambiarValor(valor) {
