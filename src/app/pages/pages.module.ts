@@ -10,6 +10,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { PagesComponent } from './pages.component';
 import { InclementadorComponent } from '../components/inclementador/inclementador.component';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
     ProgressComponent,
     Graficas1Component,
     InclementadorComponent,
-    GraficoDonaComponent
+    GraficoDonaComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
