@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 declare var swal: any;
 
 @Component({
@@ -15,10 +16,19 @@ export class UsuariosComponent implements OnInit {
   totalRegistros: number = 0;
   cargando: boolean = true;
 
-  constructor(public _usuarios: UsuarioService) { }
+  constructor(
+    public _usuarios: UsuarioService,
+    public _modalUpload: ModalUploadService
+  ) { }
 
   ngOnInit() {
     this.cargarUsuarios();
+    this._modalUpload.notificaciones
+      .subscribe(resp => this.cargarUsuarios());
+  }
+
+  mostrarModal(id: string) {
+    this._modalUpload.mostrarModal('usuarios', id);
   }
 
   cargarUsuarios() {
